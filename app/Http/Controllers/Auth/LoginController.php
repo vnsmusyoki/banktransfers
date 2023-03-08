@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\TwoFactorCodeNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -33,8 +35,34 @@ class LoginController extends Controller
      *
      * @return void
      */
+    protected function authenticated(Request $request, $user)
+    {
+
+        // if ($user->hasRole('admin')) {
+        //     return  redirect()->route('admin.home');
+        // }
+        if ($user->hasRole('administrator')) {
+            return  redirect()->route('admin.dashboard');
+        }
+        if ($user->hasRole('user')) {
+            return  redirect()->route('user.dashboard');
+        }
+    //     if ($user->hasRole('individualteacher')) {
+    //         return  redirect()->route('iteacher.dashboard');
+    //     }
+    //     if ($user->hasRole('teacher')) {
+    //         return  redirect()->route('teacherquicheck.dashboard');
+    //     }
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     if ($user->two_factor) {
+    //         $user->generateTwoFactorCode();
+    //         $user->notify(new TwoFactorCodeNotification());
+    //     }
+    // }
 }

@@ -58,7 +58,7 @@
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Email Address</label>
-                                            <input type="email" id="form2Example11" name="password"
+                                            <input type="email" id="form2Example11" name="email"
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 placeholder="valid email address" />
                                             @error('email')
