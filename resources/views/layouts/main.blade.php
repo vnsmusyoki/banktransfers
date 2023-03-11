@@ -52,12 +52,7 @@
                                     <img src="assets/images/icon/lang.png" alt="icon">
                                 </div>
                                 <ul class="main-area language-content">
-                                    <li>English</li>
-                                    <li>Hindi</li>
-                                    <li class="active">English (US)</li>
-                                    <li>Japanese</li>
-                                    <li>Kannada</li>
-                                    <li>Lithuanian</li>
+                                    <li>English</li> 
                                 </ul>
                             </div>
                             <div class="single-item notifications-area">
@@ -177,31 +172,31 @@
                         </div>
                         <ul>
                             <li class="active">
-                                <a href="dashboard.html">
+                                <a href="">
                                     <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Dashboard">
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="transactions.html">
+                                <a href="">
                                     <img src="{{ asset('assets/images/icon/transactions.png') }}" alt="Transactions">
                                     <span>Transactions</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="pay.html">
+                                <a href="">
                                     <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
                                     <span>Pay</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="receive-step-1.html">
+                                <a href="">
                                     <img src="{{ asset('assets/images/icon/receive.png') }}" alt="Receive">
                                     <span>Receive</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="money-exchange.html">
+                                <a href="">
                                     <img src="{{ asset('assets/images/icon/exchange.png') }}" alt="Exchange">
                                     <span>Exchange</span>
                                 </a>
