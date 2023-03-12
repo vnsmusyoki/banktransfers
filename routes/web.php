@@ -32,4 +32,7 @@ Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(f
     Route::get('/my-accounts', [UserDashboardController::class, 'myaccounts'])->name('myaccounts');
     Route::get('/add-account', [UserDashboardController::class, 'addaccount'])->name('addaccount');
     Route::post('/store-account', [UserDashboardController::class, 'storeaccount'])->name('storeaccount');
+    Route::get('/edit-account/{slug}', [UserDashboardController::class, 'editaccount'])->name('editaccount');
+    Route::patch('/update-account/{accountslug}', [UserDashboardController::class, 'updateaccount'])->name('updateaccount');
+    Route::get('/top-up-account/{accountslug}', [UserDashboardController::class, 'topupaccount'])->name('topupaccount');
 });

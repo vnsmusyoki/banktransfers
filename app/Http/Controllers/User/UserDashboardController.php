@@ -7,7 +7,7 @@ use App\Models\AccountType;
 use App\Models\UserAccount;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
-
+use Faker\Provider\UserAgent;
 
 class UserDashboardController extends Controller
 {
@@ -49,4 +49,48 @@ class UserDashboardController extends Controller
         Toastr::success('Account created successfully.', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->route('user.myaccounts');
     }
+    public function editaccount($slug)
+    {
+        $account = UserAccount::where(['id' => $slug, 'user_id' => auth()->user()->id])->first();
+        if ($account) {
+            $acctypes = AccountType::all();
+            return view('user.edit-account', compact('account', 'acctypes'));
+        } else {
+            Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myaccounts');
+        }
+    }
+    public function updateaccount(Request $request, $accountslug)
+    {
+        $this->validate($request, [
+            'account_name' => 'required|string|min:2|max:100',
+            'account_number' => 'required|digits:6',
+            'account_type' => 'required'
+        ]);
+
+        $account = UserAccount::where(['id' => $accountslug, 'user_id' => auth()->user()->id])->first();
+        if ($account) {
+            $account->account_type_id = $request->account_type;
+            $account->account_no = $request->account_number;
+            $account->account_name = $request->account_name;
+            $account->save();
+
+            Toastr::warning('Account edited successfully.', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myaccounts');
+        } else {
+            Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myaccounts');
+        }
+    }
+    public function topupaccount($slug)
+    {
+        $account = UserAccount::where(['id' => $slug, 'user_id' => auth()->user()->id])->first();
+        if ($account) {
+            return view('user.top-up-account', compact('account'));
+        } else {
+            Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myaccounts');
+        }
+    }
+
 }
