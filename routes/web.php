@@ -35,4 +35,5 @@ Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(f
     Route::get('/edit-account/{slug}', [UserDashboardController::class, 'editaccount'])->name('editaccount');
     Route::patch('/update-account/{accountslug}', [UserDashboardController::class, 'updateaccount'])->name('updateaccount');
     Route::get('/top-up-account/{accountslug}', [UserDashboardController::class, 'topupaccount'])->name('topupaccount');
+    Route::get('/account-transactions/{accountslug}', [UserDashboardController::class, 'accounttransactions'])->name('accounttransactions');
 });

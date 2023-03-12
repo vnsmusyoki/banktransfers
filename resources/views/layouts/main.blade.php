@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugin/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
+@livewireStyles
 </head>
 
 <body>
@@ -503,6 +503,7 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
+    @livewireScripts
 </body>
 
 

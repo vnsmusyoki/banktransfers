@@ -50,7 +50,7 @@
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                                   <li><a class="dropdown-item" href="{{ route('user.topupaccount', $account->id)}}">Top Up Account</a></li>
                                                                   <li><a class="dropdown-item" href="{{ route('user.editaccount', $account->id)}}">Edit Account</a></li>
-                                                                  <li><a class="dropdown-item" href="#">All Transactions</a></li>
+                                                                  <li><a class="dropdown-item" href="{{ route('user.accounttransactions', $account->id)}}">All Transactions</a></li>
                                                                 </ul>
                                                               </div>
                                                         </td>

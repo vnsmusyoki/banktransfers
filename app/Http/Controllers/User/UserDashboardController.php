@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccountTransaction;
 use App\Models\AccountType;
 use App\Models\UserAccount;
 use Illuminate\Http\Request;
@@ -87,6 +88,17 @@ class UserDashboardController extends Controller
         $account = UserAccount::where(['id' => $slug, 'user_id' => auth()->user()->id])->first();
         if ($account) {
             return view('user.top-up-account', compact('account'));
+        } else {
+            Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myaccounts');
+        }
+    }
+    public function accounttransactions($slug)
+    {
+        $account = UserAccount::where(['id' => $slug, 'user_id' => auth()->user()->id])->first();
+        $transactions = AccountTransaction::where('account_id', $account->id)->get();
+        if ($account) {
+            return view('user.selected-account-transactions', compact('account', 'transactions'));
         } else {
             Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('user.myaccounts');

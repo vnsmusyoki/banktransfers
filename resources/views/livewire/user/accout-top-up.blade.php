@@ -12,14 +12,14 @@
                             <li><a href="#" class="single-link last">Confirm Top Up</a></li>
                         @endif
                         @if ($currentstep == 2)
-                            <li><a href="deposit-money.html" class="single-link active">Select Account</a></li>
-                            <li><a href="deposit-money-2.html" class="single-link active">Enter amount</a></li>
-                            <li><a href="deposit-money-3.html" class="single-link last">Confirm Top Up</a></li>
+                            <li><a href="#" class="single-link active">Select Account</a></li>
+                            <li><a href="#" class="single-link active">Enter amount</a></li>
+                            <li><a href="#" class="single-link last">Confirm Top Up</a></li>
                         @endif
                         @if ($currentstep == 3)
-                            <li><a href="deposit-money.html" class="single-link active">Select Account</a></li>
-                            <li><a href="deposit-money-2.html" class="single-link active">Enter amount</a></li>
-                            <li><a href="deposit-money-3.html" class="single-link active last">Confirm Top Up</a></li>
+                            <li><a href="#" class="single-link active">Select Account</a></li>
+                            <li><a href="#" class="single-link active">Enter amount</a></li>
+                            <li><a href="#" class="single-link active last">Confirm Top Up</a></li>
                         @endif
                     </ul>
                 </div>
@@ -27,7 +27,7 @@
             <div class="col-xl-9 col-lg-8 col-md-7">
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
-                        <div>{{ $error }}</div>
+                        <small class="text-danger">{{ $error }}</small>
                     @endforeach
                 @endif
                 @if ($currentstep == 1)
@@ -68,7 +68,7 @@
                         <div class="send-banance">
                             <span class="mdr">Say something about this transaction?</span>
                             <div class="input-area">
-                                <input class="xxlr" placeholder="Received funds from my A business" type="number"
+                                <input class="xxlr" placeholder="Received funds from my A business" type="text"
                                     wire:model="transaction_description">
                             </div>
                             @error('transaction_description')
@@ -79,60 +79,39 @@
                 @endif
                 @if ($currentstep == 3)
                     <div class="payment-details">
-                        <div class="top-area">
-                            <h6>Confirm account & amount</h6>
-                            <div class="right">
-                                <a href="javascript:void(0)">
-                                    <i class="icon-h-edit"></i>
-                                    Edit
-                                </a>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <div class="col-xxl-8 col-xl-9 col-lg-12">
                                 <ul class="details-list">
                                     <li>
-                                        <span>Payment System</span>
-                                        <b>Paypal</b>
-                                    </li>
-                                    <li>
                                         <span>Paypal Payment Card</span>
-                                        <b>**** **** **** 1182</b>
+                                        <b>**** {{ $account->account_no }}</b>
                                     </li>
                                     <li>
-                                        <span>You will receive</span>
-                                        <b>400.00 USD</b>
-                                    </li>
-                                    <li>
-                                        <span>Fee</span>
-                                        <b>1 USD</b>
-                                    </li>
-                                    <li>
-                                        <span>E-mail</span>
-                                        <b><a href="https://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="751310191c161c145b07101c1135100d14180519105b161a18">[email&#160;protected]</a></b>
+                                        <span>You will receive </span>
+                                        <b>{{ $top_up_amount}}.00 USD</b>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="checkbox-area mt-40 d-flex align-items-center justify-content-center">
-                        <input type="checkbox" id="accept" name="accept">
-                        <label for="accept">I accept <a href="javascript:void(0)">terms of use</a></label>
+                        <input type="checkbox" id="accept" wire:model="accept_transaction" value="94" required>
+                        <label for="accept">I accept <a href="javascript:void(0)">this transaction to be processed</a></label>
                     </div>
                 @endif
                 <div class="footer-area mt-40">
                     @if ($currentstep == 1)
-                        <button type="button" wire:click="increasestep()" class="active">Next</button>
+                        <button type="button" wire:click="increasestep()" class="active btn btn-primary">Next Step</button>
                     @endif
                     @if ($currentstep == 2)
-                        <button type="button" wire:click="descreaseStep()">Previous Step</button>
-                        <button type="button" wire:click="increasestep()" class="active">Next</button>
+                        <button type="button" wire:click="descreaseStep()" class="btn btn-primary" style="margin-right:16px;">Previous Step</button>
+                        <button type="button" wire:click="increasestep()" class="active btn btn-primary" style="margin-right:16px;">Next Step</button>
                     @endif
                     @if ($currentstep == 3)
-                        <button type="button" wire:click="descreaseStep()">Previous Step</button>
+                        <button type="button" wire:click="descreaseStep()" class=" btn btn-warning mr-3">Previous Step</button>
 
-                        <button type="submit" wire:click="increasestep()" class="active">Next</button>
+                        <button type="submit" wire:click="increasestep()" class="active  btn btn-primary" style="margin-right:16px;">Top Up Account</button>
                     @endif
 
 

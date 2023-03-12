@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\AccountTransaction;
 use App\Models\UserAccount;
+use Brian2694\Toastr\Facades\Toastr;
 use Livewire\Component;
 
 class AccoutTopUp extends Component
@@ -13,6 +15,7 @@ class AccoutTopUp extends Component
     public $account_checked;
     public $top_up_amount;
     public $transaction_description;
+    public $accept_transaction;
 
     public function mount($accountslug)
     {
@@ -48,13 +51,12 @@ class AccoutTopUp extends Component
         if ($this->currentstep == 1) {
             $this->validate([
                 'account_checked' => 'required',
-
             ], [
                 'account_checked.required' => 'Please select at least one account',
             ]);
         } else if ($this->currentstep == 2) {
             $this->validate([
-                'amount' => 'required|numeric|min:1',
+                'top_up_amount' => 'required|numeric|min:1',
                 'transaction_description' => 'required'
             ]);
         }
@@ -65,29 +67,36 @@ class AccoutTopUp extends Component
         if ($this->currentstep ==  3) {
             $this->validate([
 
-                'terms_conditions' => 'required'
+                'accept_transaction' => 'required'
+            ], [
+                'accept_transaction' => 'Please make sure the checkbox is checked before proceeding'
             ]);
         }
-        $fileNameWithExt = $this->passport_image->getClientOriginalName();
-        $fileName =  pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-        $Extension = $this->passport_image->getClientOriginalExtension();
-        $filenameToStore = $fileName . '-' . time() . '.' . $Extension;
-        $path = $this->passport_image->storeAs('passport_images', $filenameToStore, 'public');
+        $timenow = time();
+        $checknum = "1234567898746351937463790";
+        $checkstring = "QWERTYUIOPLKJHGFDSAZXCVBNMmanskqpwolesurte";
+        $checktimelength = 2;
+        $checksnumlength = 2;
+        $checkstringlength = 2;
+        $randnum = substr(str_shuffle($timenow), 0, $checktimelength);
+        $randstring = substr(str_shuffle($checknum), 0, $checksnumlength);
+        $randcheckstring = substr(str_shuffle($checkstring), 0, $checkstringlength);
+        $totalstring = str_shuffle($randcheckstring . "" . $randnum . "" . $randstring);
+        $account = UserAccount::find($this->account_checked);
+        $trans = new AccountTransaction;
+        $trans->account_id = $this->account_checked;
+        $trans->user_id = auth()->user()->id;
+        $trans->amount = $this->top_up_amount;
+        $trans->new_balance = $this->top_up_amount + $account->new_balance;
+        $trans->description = $this->transaction_description;
+        $trans->transaction_category = "credit";
+        $trans->slug = $totalstring;
+        $trans->save();
 
-        // $user = new User;
-        // $user->name = $this->full_name;
-        // $user->email = $this->email;
-        // $user->password = bcrypt($this->password);
-        // $user->physical_address = $this->physical_address;
-        // $user->phone_number = $this->phone_number;
-        // $user->id_number = $this->id_number;
-        // $user->country_id = $this->country_name;
-        // $user->id_passport_image = $filenameToStore;
-        // $user->save();
+        $account->current_balance = $this->top_up_amount + $account->new_balance;
+        $account->save();
 
-        return redirect()->route('login')->with('accountsuccess', 'Account created successfully!');;
-        $this->validate([
-            'account_checked' => 'required',
-        ]);
+        Toastr::success('Account top up credited successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->route('user.myaccounts');
     }
 }
