@@ -50,7 +50,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($recipients as $item)
-                                            <tr data-bs-toggle="modal" data-bs-target="#cardMod">
+                                            <tr>
                                                 <th scope="row">
                                                     <div class="info-area">
                                                         <div class="img-area">
@@ -59,8 +59,8 @@
                                                         </div>
                                                         <div class="text-area">
                                                             <p>{{ $item->first_name }} {{ ucwords($item->last_name) }}</p>
-                                                            <p class="mdr"><a href="#" class="__cf_email__"
-                                                                    data-cfemail="4329222028302c2d6d2431222b222e03263b222e332f266d202c2e">{{ $item->email }}</a>
+                                                            <p class="mdr"><a href="#"
+                                                                    class="__cf_email__">{{ $item->email }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -74,7 +74,8 @@
                                                     <p class="mdr">Received</p>
                                                 </td>
                                                 <td class="btn-item">
-                                                    <a href="javascript:void(0)">Send Fund</a>
+                                                    <a href="{{ route('user.myrecipientstransactions', $item->id) }}">All
+                                                        Transactions</a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -109,5 +109,7 @@ class UserDashboardController extends Controller
         $recipients = UserRecipient::where('user_id', auth()->user()->id)->get();
         return view('user.my-recipients', compact('recipients'));
     }
-
+    public function myrecipientstransactions($recipientslug){
+        $recipient = UserRecipient::where('user_id', auth()->user()->id)->
+    }
 }
