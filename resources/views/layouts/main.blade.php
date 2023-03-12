@@ -52,7 +52,7 @@
                                     <img src="assets/images/icon/lang.png" alt="icon">
                                 </div>
                                 <ul class="main-area language-content">
-                                    <li>English</li> 
+                                    <li>English</li>
                                 </ul>
                             </div>
                             <div class="single-item notifications-area">
@@ -75,7 +75,8 @@
                                                 <div class="text-area">
                                                     <p class="mdr">You received a payment of <b>$134.00</b> from
                                                         <b>Anna
-                                                            Green</b></p>
+                                                            Green</b>
+                                                    </p>
                                                     <p class="mdr time-area">09.39AM</p>
                                                 </div>
                                             </a>
@@ -153,7 +154,14 @@
                                             <a href="account.html"><i class="fas fa-cog"></i>Settings</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)"><i class="fas fa-sign-out"></i>Logout</a>
+                                            <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>Logout</a>
+                                             
+
+                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                             @csrf
+                                         </form>
                                         </li>
                                     </ul>
                                 </div>
@@ -167,65 +175,15 @@
                         <div class="sidebar-logo">
                             {{-- <a href="dashboard.html"><img src="{{ asset('assets/images/logo.png') }}"
                                     alt="logo"></a> --}}
-                            <a href="dashboard.html">
-                                    </a>
+                            <a href="{{ route('admin.dashboard') }}">
+                            </a>
                         </div>
-                        <ul>
-                            <li class="active">
-                                <a href="">
-                                    <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Dashboard">
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="{{ asset('assets/images/icon/transactions.png') }}" alt="Transactions">
-                                    <span>Transactions</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
-                                    <span>Pay</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="{{ asset('assets/images/icon/receive.png') }}" alt="Receive">
-                                    <span>Receive</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="{{ asset('assets/images/icon/exchange.png') }}" alt="Exchange">
-                                    <span>Exchange</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="recipients.html">
-                                    <img src="{{ asset('assets/images/icon/recipients.png') }}" alt="Recipients">
-                                    <span>Recipients</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="crypto.html">
-                                    <img src="{{ asset('assets/images/icon/crypto.png') }}" alt="Crypto">
-                                    <span>Crypto</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="deposit-money.html">
-                                    <img src="{{ asset('assets/images/icon/deposit.png') }}" alt="Deposit">
-                                    <span>Deposit Money</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="withdraw-money-step-1.html">
-                                    <img src="{{ asset('assets/images/icon/withdraw.png') }}" alt="Withdraw">
-                                    <span>Withdraw Money</span>
-                                </a>
-                            </li>
-                        </ul>
+                        @role('administrator')
+                            @include('layouts.admin-menu')
+                        @endrole
+                        @role('user')
+                            @include('layouts.user-menu')
+                        @endrole
                         <ul class="bottom-item">
                             <li>
                                 <a href="account.html">

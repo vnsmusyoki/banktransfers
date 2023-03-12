@@ -60,7 +60,7 @@
                                             <label class="form-label" for="form2Example11">Email Address</label>
                                             <input type="email" id="form2Example11" name="email"
                                                 class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="valid email address" />
+                                                placeholder="valid email address"  value="{{ old('email')}}"/>
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     <small class="text-danger">{{$message }}</small>
