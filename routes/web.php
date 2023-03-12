@@ -29,4 +29,7 @@ Route::middleware(['auth', 'role:administrator'])->name('admin.')->prefix('admin
 Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/pay-transaction', [UserDashboardController::class, 'paytransaction'])->name('paytransaction');
+    Route::get('/my-accounts', [UserDashboardController::class, 'myaccounts'])->name('myaccounts');
+    Route::get('/add-account', [UserDashboardController::class, 'addaccount'])->name('addaccount');
+    Route::post('/store-account', [UserDashboardController::class, 'storeaccount'])->name('storeaccount');
 });

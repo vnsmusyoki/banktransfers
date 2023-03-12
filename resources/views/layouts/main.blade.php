@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/arafat-font.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugin/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 
 <body>
@@ -133,20 +135,22 @@
                             <div class="single-item user-area">
                                 <div class="profile-area d-flex align-items-center">
                                     <span class="user-profile">
-                                        <img src="{{ asset('assets/images/avatar.png') }}" alt="User">
+                                        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
+                                            style="height:40px;width:40px;border-radius:50%;" alt="User">
                                     </span>
                                     <i class="fa-solid fa-sort-down"></i>
                                 </div>
                                 <div class="main-area user-content">
                                     <div class="head-area d-flex align-items-center">
                                         <div class="profile-img">
-                                            <img src="{{ asset('assets/images/avatar-2.png') }}" alt="User">
+                                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
+                                                alt="User">
                                         </div>
                                         <div class="profile-head">
                                             <a href="javascript:void(0)">
-                                                <h5>Kevin Martin</h5>
+                                                <h5>{{ ucwords(Auth::user()->name) }}</h5>
                                             </a>
-                                            <p class="wallet-id">Wallet ID: 6264849965</p>
+                                            <p class="wallet-id">Wallet ID: {{ Auth::user()->id_number }}</p>
                                         </div>
                                     </div>
                                     <ul>
@@ -155,13 +159,15 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>Logout</a>
-                                             
+                                                onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();"><i
+                                                    class="fas fa-sign-out"></i>Logout</a>
 
-                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                             @csrf
-                                         </form>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
@@ -221,9 +227,9 @@
     <!-- header-section end -->
 
     <!-- Dashboard Section start -->
-    <section class="dashboard-section body-collapse">
-        @yield('content')
-    </section>
+    {{-- <section class="dashboard-section body-collapse"> --}}
+    @yield('content')
+    {{-- </section> --}}
     <!-- Dashboard Section end -->
 
     <!-- Card Popup start -->
@@ -494,6 +500,9 @@
     <script src="{{ asset('assets/js/plugin/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/plugin.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 </body>
 
 

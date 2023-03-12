@@ -5,11 +5,17 @@
             <span>Dashboard</span>
         </a>
     </li>
-     
+
     <li>
         <a href="{{ route('user.paytransaction')}}">
             <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
             <span>Pay</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('user.myaccounts')}}">
+            <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
+            <span>My Accounts</span>
         </a>
     </li>
     <li>
