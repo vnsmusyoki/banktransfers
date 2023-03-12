@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AccountTransaction;
 use App\Models\AccountType;
 use App\Models\UserAccount;
+use App\Models\UserRecipient;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Faker\Provider\UserAgent;
@@ -103,6 +104,10 @@ class UserDashboardController extends Controller
             Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('user.myaccounts');
         }
+    }
+    public function myrecipients(){
+        $recipients = UserRecipient::where('user_id', auth()->user()->id)->get();
+        return view('user.my-recipients', compact('recipients'));
     }
 
 }

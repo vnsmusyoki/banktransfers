@@ -31,7 +31,7 @@
         </a>
     </li>
     <li>
-        <a href="recipients.html">
+        <a href="{{ route('user.myrecipients')}}">
             <img src="{{ asset('assets/images/icon/recipients.png') }}" alt="Recipients">
             <span>Recipients</span>
         </a>
