@@ -1,18 +1,13 @@
 <ul>
     <li class="active">
-        <a href="{{ route('admin.dashboard')}}">
+        <a href="{{ route('user.dashboard')}}">
             <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Dashboard">
             <span>Dashboard</span>
         </a>
     </li>
+     
     <li>
-        <a href="">
-            <img src="{{ asset('assets/images/icon/transactions.png') }}" alt="Transactions">
-            <span>Transactions</span>
-        </a>
-    </li>
-    <li>
-        <a href="">
+        <a href="{{ route('user.paytransaction')}}">
             <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
             <span>Pay</span>
         </a>
