@@ -1,18 +1,18 @@
 <ul>
-    <li class="active">
+    <li class="{{ request()->is('/user/dashboard') ? 'active' : '' }}">
         <a href="{{ route('user.dashboard')}}">
             <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Dashboard">
             <span>Dashboard</span>
         </a>
     </li>
 
-    <li>
+    <li class="{{ request()->is('/') ? 'active' : '' }}">
         <a href="{{ route('user.paytransaction')}}">
             <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
-            <span>Pay</span>
+            <span>Debit</span>
         </a>
     </li>
-    <li>
+    <li class="{{ request()->is('/user/my-accounts') ? 'active' : '' }}">
         <a href="{{ route('user.myaccounts')}}">
             <img src="{{ asset('assets/images/icon/pay.png') }}" alt="Pay">
             <span>My Accounts</span>

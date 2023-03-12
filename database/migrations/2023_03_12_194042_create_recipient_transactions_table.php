@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('recipient_transactions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->nullable()->unsigned();
+            $table->bigInteger('account_id')->nullable()->unsigned();
+            $table->bigInteger('recipient_id')->nullable()->unsigned();
+            $table->string('amount')->nullable();
+            $table->string('transaction_category')->nullable();
+            $table->integer('new_balance')->nullable();
+            $table->string('description')->nullable();
+            $table->string('slug')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('account_id')->references('id')->on('user_accounts')->onDelete('cascade');
+            $table->foreign('recipient_id')->references('id')->on('user_recipients')->onDelete('cascade');
             $table->timestamps();
         });
     }

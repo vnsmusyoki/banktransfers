@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'User | My Contacts')
+@section('title', 'User | Recipient  Transactions')
 @section('content')
 
     <!-- Dashboard Section start -->
@@ -49,7 +49,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($recipients as $item)
+                                        @foreach ($transactions as $item)
                                             <tr>
                                                 <th scope="row">
                                                     <div class="info-area">

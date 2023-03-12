@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\AccountTransaction;
 use App\Models\AccountType;
+use App\Models\RecipientTransaction;
 use App\Models\UserAccount;
 use App\Models\UserRecipient;
 use Illuminate\Http\Request;
@@ -110,6 +111,14 @@ class UserDashboardController extends Controller
         return view('user.my-recipients', compact('recipients'));
     }
     public function myrecipientstransactions($recipientslug){
-        $recipient = UserRecipient::where('user_id', auth()->user()->id)->
+        $recipient = UserRecipient::where('user_id', auth()->user()->id)->where('slug', $recipientslug)->first();
+        $transactions = RecipientTransaction::where('recipient_id', $recipient->id)->get();
+        if($recipient){
+            return view('user.my-recipient-transactions', compact('recipient', 'transactions'));
+        }else{
+            Toastr::warning('Recipient details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myrecipients');
+        }
+
     }
 }
