@@ -106,19 +106,26 @@ class UserDashboardController extends Controller
             return redirect()->route('user.myaccounts');
         }
     }
-    public function myrecipients(){
+    public function myrecipients()
+    {
         $recipients = UserRecipient::where('user_id', auth()->user()->id)->get();
         return view('user.my-recipients', compact('recipients'));
     }
-    public function myrecipientstransactions($recipientslug){
+    public function myrecipientstransactions($recipientslug)
+    {
         $recipient = UserRecipient::where('user_id', auth()->user()->id)->where('slug', $recipientslug)->first();
         $transactions = RecipientTransaction::where('recipient_id', $recipient->id)->get();
-        if($recipient){
+        if ($recipient) {
             return view('user.my-recipient-transactions', compact('recipient', 'transactions'));
-        }else{
+        } else {
             Toastr::warning('Recipient details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('user.myrecipients');
         }
+    }
 
+    public function alltransactionaccounts()
+    {
+        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->get();
+        return view('user.all-transaction-accounts', compact('transactions'));
     }
 }

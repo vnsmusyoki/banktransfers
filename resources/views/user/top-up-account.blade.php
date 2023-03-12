@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     @livewire('user.accout-top-up', ['accountslug' => $account->id])
-                    
+                
                 </div>
             </div>
         </div>

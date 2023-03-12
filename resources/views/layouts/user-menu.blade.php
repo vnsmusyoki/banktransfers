@@ -19,9 +19,9 @@
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{ route('user.alltransactionaccounts')}}">
             <img src="{{ asset('assets/images/icon/receive.png') }}" alt="Receive">
-            <span>Receive</span>
+            <span>Transactions</span>
         </a>
     </li>
     <li>

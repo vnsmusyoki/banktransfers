@@ -38,4 +38,5 @@ Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(f
     Route::get('/account-transactions/{accountslug}', [UserDashboardController::class, 'accounttransactions'])->name('accounttransactions');
     Route::get('/my-recipients', [UserDashboardController::class, 'myrecipients'])->name('myrecipients');
     Route::get('/my-recipients/{recipientslug}', [UserDashboardController::class, 'myrecipientstransactions'])->name('myrecipientstransactions');
+    Route::get('/all-transactions-accounts', [UserDashboardController::class, 'alltransactionaccounts'])->name('alltransactionaccounts');
 });
