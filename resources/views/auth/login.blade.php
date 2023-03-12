@@ -47,11 +47,15 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                        <img src="logo.webp"
                                             style="width: 185px;" alt="logo">
                                         <h4 class="mt-1 mb-5 pb-1">We are The Bankers Team</h4>
                                     </div>
-
+                                    @if ($message = Session::get('accountsuccess'))
+                                    <div class="alert alert-success alert-block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @endif
                                     <form method="POST" action="{{ route('login') }}" autocomplete="off">
                                         @csrf
                                         <p>Please login to your account</p>
@@ -87,7 +91,7 @@
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
-                                            <button type="button" class="btn btn-outline-danger">Create new</button>
+                                            <a  href="{{ route('register')}}" class="btn btn-outline-danger">Create new</a>
                                         </div>
 
                                     </form>
