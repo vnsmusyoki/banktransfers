@@ -227,7 +227,7 @@
     <!-- header-section end -->
 
     <!-- Dashboard Section start -->
-    {{-- <section class="dashboard-section body-collapse"> --}}
+    {{--  --}}
     @yield('content')
     {{-- </section> --}}
     <!-- Dashboard Section end -->

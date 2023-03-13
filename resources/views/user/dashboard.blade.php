@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'User Dashboard')
 @section('content')
+<section class="dashboard-section body-collapse">
 <div class="overlay pt-120">
     <div class="container-fruid">
         <div class="row">
@@ -482,4 +483,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
