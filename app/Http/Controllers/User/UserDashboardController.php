@@ -20,7 +20,8 @@ class UserDashboardController extends Controller
     }
     public function paytransaction()
     {
-        return view('user.make-transaction');
+        $recipients = UserRecipient::where('user_id', auth()->user()->id)->get();
+        return view('user.make-transaction', compact('recipients'));
     }
     public function myaccounts()
     {
@@ -114,7 +115,7 @@ class UserDashboardController extends Controller
     public function myrecipientstransactions($recipientslug)
     {
         $recipient = UserRecipient::where('user_id', auth()->user()->id)->where('slug', $recipientslug)->first();
-        $transactions = RecipientTransaction::where('recipient_id', $recipient->id)->get();
+        $transactions = AccountTransaction::where('recipient_id', $recipient->id)->get();
         if ($recipient) {
             return view('user.my-recipient-transactions', compact('recipient', 'transactions'));
         } else {
@@ -127,5 +128,17 @@ class UserDashboardController extends Controller
     {
         $transactions = AccountTransaction::where('user_id', auth()->user()->id)->get();
         return view('user.all-transaction-accounts', compact('transactions'));
+    }
+    public function selectrecipientaccount($selectedaccount)
+    {
+        $recipient = UserRecipient::where('user_id', auth()->user()->id)->where('slug', $selectedaccount)->first();
+        $transactions = AccountTransaction::where('recipient_id', $recipient->id)->get();
+        if ($recipient) {
+
+            return view('user.my-recipient-transactions-amount', compact('recipient'));
+        } else {
+            Toastr::warning('Recipient details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.myrecipients');
+        }
     }
 }

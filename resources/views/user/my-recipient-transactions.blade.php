@@ -42,10 +42,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name/ Business</th>
-                                            <th scope="col">Last transfer date</th>
-                                            <th scope="col">Last transfer amount</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Amount Transacted</th>
+                                            <th scope="col">Date Transacted</th>
+                                            <th scope="col">Trans. Category</th>
+                                            <th scope="col">Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,35 +84,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <nav aria-label="Page navigation" class="d-flex justify-content-center mt-60">
-                                <ul class="pagination justify-content-center align-items-center mb-40">
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angles-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                    <li class="page-item"><a class="page-link active" href="javascript:void(0)">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angles-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                             
                         </div>
                     </div>
                 </div>

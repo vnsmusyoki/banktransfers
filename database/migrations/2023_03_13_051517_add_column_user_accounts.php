@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_accounts', function (Blueprint $table) {
+        Schema::table('account_transactions', function (Blueprint $table) {
             $table->bigInteger('recipient_id')->nullable()->unsigned();
             $table->foreign('recipient_id')->references('id')->on('user_recipients')->onDelete('cascade');
         });
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user_accounts', function (Blueprint $table) {
+        Schema::table('account_transactions', function (Blueprint $table) {
             //
         });
     }
