@@ -40,98 +40,24 @@
                 <div class="row d-flex header-area">
                     <div class="navbar-area d-flex align-items-center justify-content-between">
                         <div class="sidebar-icon">
-                            <img src="assets/images/icon/menu.png" alt="icon">
+                            <img src="{{ asset('assets/images/icon/menu.png') }}" alt="icon">
                         </div>
                         <form action="#" class="flex-fill">
                             <div class="form-group d-flex align-items-center">
-                                <img src="assets/images/icon/search.png" alt="icon">
+                                <img src="{{ asset('assets/images/icon/search.png') }}" alt="icon">
                                 <input type="text" placeholder="Type to search...">
                             </div>
                         </form>
                         <div class="dashboard-nav">
                             <div class="single-item language-area">
                                 <div class="language-btn">
-                                    <img src="assets/images/icon/lang.png" alt="icon">
+                                    <img src="{{ asset('assets/images/icon/lang.png') }}" alt="icon">
                                 </div>
                                 <ul class="main-area language-content">
                                     <li>English</li>
                                 </ul>
                             </div>
-                            <div class="single-item notifications-area">
-                                <div class="notifications-btn">
-                                    <img src="{{ asset('assets/images/icon/bell.png') }}" class="bell-icon"
-                                        alt="icon">
-                                </div>
-                                <div class="main-area notifications-content">
-                                    <div class="head-area d-flex justify-content-between">
-                                        <h5>Notifications</h5>
-                                        <span class="mdr">4</span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{{ asset('assets/images/user-1.png') }}" class="max-un"
-                                                        alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr">You received a payment of <b>$134.00</b> from
-                                                        <b>Anna
-                                                            Green</b>
-                                                    </p>
-                                                    <p class="mdr time-area">09.39AM</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{{ asset('assets/images/user-2.png') }}" class="max-un"
-                                                        alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr"><b>James Deed</b> requested a payment of
-                                                        <b>£890.00</b>
-                                                    </p>
-                                                    <p class="mdr time-area">08.09AM</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{{ asset('assets/images/master-card.png') }}"
-                                                        class="max-un" alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr">Your new payment method has beed added
-                                                        successfully
-                                                    </p>
-                                                    <p class="mdr time-area">09.39AM</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{{ asset('assets/images/user-3.png') }}" class="max-un"
-                                                        alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr">You received a payment of <b>$250.00</b> from
-                                                        Goerge
-                                                        Michael</p>
-                                                    <p class="mdr time-area">Yesterday</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
                             <div class="single-item user-area">
                                 <div class="profile-area d-flex align-items-center">
                                     <span class="user-profile">

@@ -5,6 +5,34 @@
 
 
     <!-- Dashboard Section start -->
+    {{-- <section class="dashboard-section body-collapse">
+        <form action="" class="overlay pt-120">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">ckmc</label>
+                        <input type="text" class="form-control" name="" placeholder="45">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="kckck">select account</label>
+                        <select wire:model="account_selected" id="kckck" class="form-control">
+                            <option value="">click to select account</option>
+                            @foreach ($accounts as $item)
+                                <option value="{{ $item->id }}">{{ $item->account_name }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit">Send Money</button>
+                </div>
+            </div>
+        </form>
+
+    </section> --}}
     <section class="dashboard-section body-collapse pay step step-2">
         <div class="overlay pt-120">
             <div class="container-fruid">

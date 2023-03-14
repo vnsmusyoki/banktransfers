@@ -13,4 +13,8 @@ class AccountTransaction extends Model
     {
         return $this->belongsTo(UserAccount::class, 'account_id');
     }
+    public function recipientaccount()
+    {
+        return $this->belongsTo(UserRecipient::class, 'recipient_id');
+    }
 }

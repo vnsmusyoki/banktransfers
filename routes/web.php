@@ -40,4 +40,5 @@ Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(f
     Route::get('/my-recipients/{recipientslug}', [UserDashboardController::class, 'myrecipientstransactions'])->name('myrecipientstransactions');
     Route::get('/all-transactions-accounts', [UserDashboardController::class, 'alltransactionaccounts'])->name('alltransactionaccounts');
     Route::get('/selected-recipient-account/{recipientslug}', [UserDashboardController::class, 'selectrecipientaccount'])->name('selectrecipientaccount');
+    Route::get('/complete-transaction/{transslug}', [UserDashboardController::class, 'completetransaction'])->name('completetransaction');
 });
