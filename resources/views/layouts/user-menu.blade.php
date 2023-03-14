@@ -25,9 +25,9 @@
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{ route('user.pendingtransactions')}}">
             <img src="{{ asset('assets/images/icon/exchange.png') }}" alt="Exchange">
-            <span>Exchange</span>
+            <span>Pending Transactions</span>
         </a>
     </li>
     <li>
@@ -36,22 +36,5 @@
             <span>Recipients</span>
         </a>
     </li>
-    <li>
-        <a href="crypto.html">
-            <img src="{{ asset('assets/images/icon/crypto.png') }}" alt="Crypto">
-            <span>Crypto</span>
-        </a>
-    </li>
-    <li>
-        <a href="deposit-money.html">
-            <img src="{{ asset('assets/images/icon/deposit.png') }}" alt="Deposit">
-            <span>Deposit Money</span>
-        </a>
-    </li>
-    <li>
-        <a href="withdraw-money-step-1.html">
-            <img src="{{ asset('assets/images/icon/withdraw.png') }}" alt="Withdraw">
-            <span>Withdraw Money</span>
-        </a>
-    </li>
+  
 </ul>

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'User | All Account Transactions')
+@section('title', 'User | All Pending Transactions')
 @section('content')
 
     <section class="dashboard-section body-collapse account">
@@ -28,9 +28,9 @@
                                                         <th>Date</th>
                                                         <th>Account</th>
                                                         <th>Transaction Type</th>
-                                                        <th>Credit</th>
                                                         <th>Debit</th>
-                                                        <th>Balance</th>
+                                                        <th>Action</th>
+                                                        <th>Complete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -41,21 +41,20 @@
                                                             </td>
                                                             <td style="text-transform:uppercase;">{{ ucwords($trans->acctaccount->account_name) }}</td>
                                                             <td>{{ ucwords($trans->transaction_category) }}</td>
-                                                            <td>
-                                                                @if ($trans->transaction_category == 'credit')
-                                                                    <span class="text-success">+ $
-                                                                        {{ $trans->amount }}</span>
-                                                                @endif
 
-                                                            </td>
                                                             <td>
 
                                                                 @if ($trans->transaction_category == 'debit')
                                                                     <span class="text-warning">- $
-                                                                        {{ $trans->amount }}</span>
+                                                                      $  {{ $trans->amount }}</span>
                                                                 @endif
                                                             </td>
-                                                            <td>$ {{ $trans->new_balance }}</td>
+                                                            <td>
+                                                                <a href="{{ route('user.deletependingtransactions', $trans->slug)}}" class="btn btn-danger">Delete</a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('user.completetransaction', $trans->slug)}}" class="btn btn-success">Process Payment</a>
+                                                            </td>
 
                                                         </tr>
                                                     @endforeach

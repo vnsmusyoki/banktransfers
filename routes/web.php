@@ -41,4 +41,7 @@ Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(f
     Route::get('/all-transactions-accounts', [UserDashboardController::class, 'alltransactionaccounts'])->name('alltransactionaccounts');
     Route::get('/selected-recipient-account/{recipientslug}', [UserDashboardController::class, 'selectrecipientaccount'])->name('selectrecipientaccount');
     Route::get('/complete-transaction/{transslug}', [UserDashboardController::class, 'completetransaction'])->name('completetransaction');
+    Route::post('/update-complete-transaction', [UserDashboardController::class, 'updatecompletetransaction'])->name('updatecompletetransaction');
+    Route::get('/pending-transactions', [UserDashboardController::class, 'pendingtransactions'])->name('pendingtransactions');
+    Route::get('/delete-pending-transactions/{transslug}', [UserDashboardController::class, 'deletependingtransactions'])->name('deletependingtransactions');
 });

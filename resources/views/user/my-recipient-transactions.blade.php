@@ -54,28 +54,28 @@
                                                 <th scope="row">
                                                     <div class="info-area">
                                                         <div class="img-area">
-                                                            <img src="https://ui-avatars.com/api/?name={{ $item->first_name }} {{ $item->last_name }}"
+                                                            <img src="https://ui-avatars.com/api/?name={{ $item->recipientaccount->first_name }} {{ $item->recipientaccount->last_name }}"
                                                                 alt="image">
                                                         </div>
                                                         <div class="text-area">
-                                                            <p>{{ $item->first_name }} {{ ucwords($item->last_name) }}</p>
+                                                            <p>{{ $item->recipientaccount->first_name }} {{ ucwords($item->recipientaccount->last_name) }}</p>
                                                             <p class="mdr"><a href="#"
-                                                                    class="__cf_email__">{{ $item->email }}</a>
+                                                                    class="__cf_email__">{{ $item->recipientaccount->email }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </th>
                                                 <td>
-                                                    <p>03:00 PM</p>
-                                                    <p class="mdr">10 Mar 2022</p>
+                                                    <p>{{ $item->created_at->format('h:i A') }}</p>
+                                                        <p>{{ $item->created_at->format('d M Y') }}</p>
+
                                                 </td>
                                                 <td>
-                                                    <p>$106.58</p>
-                                                    <p class="mdr">Received</p>
+                                                    <p>$ {{ $item->amount }}</p>
+                                                    <p class="mdr">Sent</p>
                                                 </td>
                                                 <td class="btn-item">
-                                                    <a href="{{ route('user.myrecipientstransactions', $item->slug) }}">All
-                                                        Transactions</a>
+                                                    <p>{{ $item->description }}</p>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -84,7 +84,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                             
+
                         </div>
                     </div>
                 </div>

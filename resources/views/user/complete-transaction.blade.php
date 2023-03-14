@@ -47,6 +47,38 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-6">
+                                <div class="card" role="tabpanel" aria-labelledby="transfer-tab">
+                                    <div class="modal-content">
+
+                                        <div class="main-content">
+                                            <h4>Confirm Transfer!</h4>
+                                            <p> Please enter your ID Number to authorize this transaction in the text
+                                                box below</p>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                            <form method="POST" action="{{ route('user.updatecompletetransaction') }}">
+                                                @csrf
+                                                <input type="hidden" name="transaction_id" value="{{ $transaction->slug}}">
+                                                <div class="userInput">
+                                                    <input type="number" name="id_number" placeholder="2345635"
+                                                        style="border-color:black !important;">
+                                                </div>
+                                                {{-- <a href="javascript:void(0)">Don’t receive a code?</a> --}}
+                                                <button class="mt-60 btn btn-success" type="submit">Confirm
+                                                    Transaction</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
                                 <ul class="details-list">
                                     <li>
                                         <span>You Send</span>
@@ -54,7 +86,7 @@
                                     </li>
                                     <li>
                                         <span>Recipient gets</span>
-                                        <b>{{ $transaction->amount }}.00 GBP</b>
+                                        <b>{{ $transaction->amount }}.00 </b>
                                     </li>
 
                                     <li>
@@ -76,12 +108,12 @@
                         </div>
                     </div>
 
-                    @livewire('user.confirm-payment', ['paymentslug' => $transaction->slug])
+
 
                 </div>
             </div>
         </div>
     </section>
     <!-- Dashboard Section end -->
-   
+
 @endsection

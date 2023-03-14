@@ -50,6 +50,11 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($recipients as $item)
+                                            @php
+                                                $lasttransfer = App\Models\AccountTransaction::where('recipient_id', $item->id)
+                                                    ->latest()
+                                                    ->first();
+                                            @endphp
                                             <tr>
                                                 <th scope="row">
                                                     <div class="info-area">
@@ -66,12 +71,22 @@
                                                     </div>
                                                 </th>
                                                 <td>
-                                                    <p>03:00 PM</p>
-                                                    <p class="mdr">10 Mar 2022</p>
+                                                    @if ($lasttransfer == null)
+                                                        ---
+                                                    @else
+                                                        <p>{{ $lasttransfer->created_at->format('h:i A') }}</p>
+                                                        <p>{{ $lasttransfer->created_at->format('d M Y') }}</p>
+                                                    @endif
+
                                                 </td>
                                                 <td>
-                                                    <p>$106.58</p>
-                                                    <p class="mdr">Received</p>
+                                                    @if ($lasttransfer == null)
+                                                    ---
+                                                @else
+                                                    <p>$ {{ $lasttransfer->amount }}</p>
+                                                    <p class="mdr">Sent</p>
+
+                                                @endif
                                                 </td>
                                                 <td class="btn-item">
                                                     <a href="{{ route('user.myrecipientstransactions', $item->slug) }}">All
@@ -84,35 +99,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <nav aria-label="Page navigation" class="d-flex justify-content-center mt-60">
-                                <ul class="pagination justify-content-center align-items-center mb-40">
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angles-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link previous" href="javascript:void(0)" aria-label="Previous">
-                                            <i class="fa-solid fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                    <li class="page-item"><a class="page-link active" href="javascript:void(0)">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0)" aria-label="Next">
-                                            <i class="fa-solid fa-angles-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                           
                         </div>
                     </div>
                 </div>

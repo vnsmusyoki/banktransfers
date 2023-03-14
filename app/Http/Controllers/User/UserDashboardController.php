@@ -126,7 +126,7 @@ class UserDashboardController extends Controller
 
     public function alltransactionaccounts()
     {
-        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->get();
+        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->whereNull('status')->get();
         return view('user.all-transaction-accounts', compact('transactions'));
     }
     public function selectrecipientaccount($selectedaccount)
@@ -136,7 +136,7 @@ class UserDashboardController extends Controller
         if ($recipient) {
             $accounts = UserAccount::where('user_id', auth()->user()->id)->get();
 
-            return view('user.my-recipient-transactions-amount', compact('recipient','accounts'));
+            return view('user.my-recipient-transactions-amount', compact('recipient', 'accounts'));
         } else {
             Toastr::warning('Recipient details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('user.myrecipients');
@@ -152,6 +152,57 @@ class UserDashboardController extends Controller
         } else {
             Toastr::warning('Transaction details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('user.dashboard');
+        }
+    }
+
+
+
+    public function updatecompletetransaction(Request $request)
+    {
+        $this->validate($request, [
+            'id_number' => 'required|digits:8',
+            'transaction_id' => 'required',
+        ]);
+
+        $transaction = AccountTransaction::where('user_id', auth()->user()->id)->where('slug', $request->transaction_id)->first();
+
+        if ($transaction) {
+            if (auth()->user()->id_number == $request->id_number) {
+                $balance = UserAccount::where('user_id', auth()->user()->id)->where('id', $transaction->account_id)->first();
+                $balance->current_balance =$balance->current_balance - $transaction->amount;
+                $balance->save();
+
+
+                $transaction->new_balance = $balance->current_balance;
+                $transaction->status = null;
+                $transaction->save();
+
+                Toastr::success('Transaction debited successfully from your account', 'Success', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->route('user.alltransactionaccounts');
+            } else {
+                Toastr::warning('ID Number failed to match', 'Warning', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->route('user.alltransactionaccounts');
+            }
+            return view('user.complete-transaction', compact('transaction'));
+        } else {
+            Toastr::warning('Transaction details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.dashboard');
+        }
+    }
+    public function pendingtransactions(){
+        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
+        return view('user.all-pending-transaction', compact('transactions'));
+    }
+    public function deletependingtransactions($transslug)
+    {
+        $transaction = AccountTransaction::where('user_id', auth()->user()->id)->where('slug', $transslug)->first();
+        if ($transaction) {
+            $transaction->delete();
+            Toastr::warning('Transaction deleted successfully', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.pendingtransactions');
+        } else {
+            Toastr::warning('Transaction details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('user.pendingtransactions');
         }
     }
 }
