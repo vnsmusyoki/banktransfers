@@ -118,31 +118,32 @@
                         @endrole
                         <ul class="bottom-item">
                             <li>
-                                <a href="account.html">
+                                <a href="{{ url('account-profile')}}">
                                     <img src="{{ asset('assets/images/icon/account.png') }}" alt="Account">
                                     <span>Account</span>
                                 </a>
                             </li>
+
                             <li>
-                                <a href="javascript:void(0)">
-                                    <img src="{{ asset('assets/images/icon/support.png') }}" alt="Support">
-                                    <span>Support</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
+                                <a href="j{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-forms').submit();">
                                     <img src="{{ asset('assets/images/icon/quit.png') }}" alt="Quit">
                                     <span>Quit</span>
                                 </a>
                             </li>
+
+
+                                            <form id="logout-forms" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
                         </ul>
                         <div class="pt-120">
                             <div class="invite-now">
                                 <div class="img-area">
                                     <img src="{{ asset('assets/images/invite-now-illus.png') }}" alt="Image">
                                 </div>
-                                <p>Invite your friend and get $25</p>
-                                <a href="javascript:void(0)" class="cmn-btn">Invite Now</a>
+
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,11 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard');
+        $balance = UserAccount::where('user_id', auth()->user()->id)->sum('current_balance');
+        $latestreceived = AccountTransaction::where('user_id', auth()->user()->id)->where('transaction_category', 'credit')->latest()->first();
+        $totaldebits = AccountTransaction::where('user_id', auth()->user()->id)->where('transaction_category', 'debit')->sum('amount');
+        $latesttransactions = AccountTransaction::where('user_id', auth()->user()->id)->latest()->take(5)->get();
+        return view('user.dashboard', compact('balance','latestreceived','totaldebits','latesttransactions'));
     }
     public function paytransaction()
     {
