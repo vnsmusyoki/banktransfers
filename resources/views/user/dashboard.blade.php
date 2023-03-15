@@ -12,7 +12,13 @@
                                     <div class="left-side">
                                         <h5>Hi, {{ Auth::user()->name }}</h5>
                                         <h2>${{ $balance }}.00</h2>
+                                        @if (!empty($latestreceived))
                                         <h5 class="receive">Last Received <span>${{ $latestreceived->amount }}.00</span></h5>
+
+                                        @else
+                                        <h5 class="receive">Last Received <span>$00.00</span></h5>
+
+                                        @endif
                                     </div>
                                     <div class="right-side">
                                         <div class="right-top">
@@ -97,23 +103,39 @@
 
                             <div class="single-item">
                                 <div class="section-text d-flex align-items-center justify-content-between">
-                                    <h6>Payment Analytics</h6>
-                                    <div class="select-box">
-                                        <select>
-                                            <option>Monthly</option>
-                                            <option value="1">Jan</option>
-                                            <option value="2">Feb</option>
-                                            <option value="3">Mar</option>
-                                        </select>
+
+                                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                    <script type="text/javascript">
+                                        google.charts.load("current", {
+                                            packages: ["corechart"]
+                                        });
+                                        google.charts.setOnLoadCallback(drawChart);
+
+                                        function drawChart() {
+
+                                            var data = google.visualization.arrayToDataTable({{ Js::from($result) }});
+
+                                            var options = {
+                                                title: '',
+                                                pieHole: 0.1,
+                                                // is3D: true,
+                                                legend: 'none',
+                                            };
+
+                                            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                            chart.draw(data, options);
+                                        }
+                                    </script>
+                                    <div>
+                                        <div id="piechart_3d" style="width: 100%; height: 400px"></div>
                                     </div>
                                 </div>
-                                <div id="chart"></div>
                             </div>
                             <div class="single-item">
                                 <div class="section-text d-flex align-items-center justify-content-between">
                                     <h6>Recipients</h6>
                                     <div class="view-all d-flex align-items-center">
-                                        <a href="javascript:void(0)">View All</a>
+                                        <a href="{{ route('user.alltransactionaccounts')}}">View All</a>
                                         <img src="{{ asset('assets/images/icon/right-arrow.png') }}" alt="icon">
                                     </div>
                                 </div>

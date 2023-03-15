@@ -60,9 +60,10 @@
                             @enderror
                             @if (!empty($account_checked))
                                 @php
-                                    $balance = App\Models\UserAccount::find($account_checked)->first();
-                                @endphp
-                                <p>Available Balance<b>{{ $balance->current_balance }}</b></p>
+                                    // $balance = App\Models\UserAccount::find($account_checked)->first();
+                                    $balance = App\Models\UserAccount::where('id', $account_checked)->where('user_id', auth()->user()->id)->first();
+                                @endphp 
+                                <p>Available Balance<b>$ {{ $balance->current_balance }}</b></p>
                             @endif
                         </div>
                         <div class="send-banance">

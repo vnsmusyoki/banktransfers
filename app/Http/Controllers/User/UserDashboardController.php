@@ -11,6 +11,7 @@ use App\Models\UserRecipient;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Faker\Provider\UserAgent;
+use Illuminate\Support\Facades\DB;
 
 class UserDashboardController extends Controller
 {
@@ -20,7 +21,16 @@ class UserDashboardController extends Controller
         $latestreceived = AccountTransaction::where('user_id', auth()->user()->id)->where('transaction_category', 'credit')->latest()->first();
         $totaldebits = AccountTransaction::where('user_id', auth()->user()->id)->where('transaction_category', 'debit')->sum('amount');
         $latesttransactions = AccountTransaction::where('user_id', auth()->user()->id)->latest()->take(5)->get();
-        return view('user.dashboard', compact('balance','latestreceived','totaldebits','latesttransactions'));
+        $piedata = AccountTransaction::select(DB::raw("SUM(amount) as total_amount"), 'transaction_category')
+        ->where('user_id', auth()->user()->id)
+        ->groupBy('transaction_category')
+        ->get();
+    $result[] = ['Category', 'Total Amount'];
+    foreach ($piedata as $key => $value) {
+        $result[++$key] = [$value->transaction_category, (int)$value->total_amount];
+        // $result[++$key] = ["Subject ", (int)$value->subject_name_id];
+    }
+        return view('user.dashboard', compact('balance','latestreceived','totaldebits','latesttransactions','result', 'piedata',));
     }
     public function paytransaction()
     {
@@ -103,8 +113,10 @@ class UserDashboardController extends Controller
     public function accounttransactions($slug)
     {
         $account = UserAccount::where(['id' => $slug, 'user_id' => auth()->user()->id])->first();
-        $transactions = AccountTransaction::where('account_id', $account->id)->get();
+
         if ($account) {
+
+            $transactions = AccountTransaction::where('account_id', $account->id)->get();
             return view('user.selected-account-transactions', compact('account', 'transactions'));
         } else {
             Toastr::warning('Account details not found', 'Warning', ["positionClass" => "toast-bottom-right"]);
@@ -130,7 +142,7 @@ class UserDashboardController extends Controller
 
     public function alltransactionaccounts()
     {
-        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->whereNull('status')->get();
+        $transactions = AccountTransaction::where('user_id', auth()->user()->id)->whereNull('status')->orderBy('created_at', 'asc')->get();
         return view('user.all-transaction-accounts', compact('transactions'));
     }
     public function selectrecipientaccount($selectedaccount)

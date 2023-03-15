@@ -40,8 +40,8 @@
                                                         <td>{{ucwords($account->account_name) }}</td>
                                                         <td>{{$account->account_no }}</td>
                                                         <td>{{$account->accounttypename->name }}</td>
-                                                        <td>{{$account->opening_balance }}</td>
-                                                        <td>{{$account->current_balance }}</td>
+                                                        <td>$ {{$account->opening_balance }}</td>
+                                                        <td>$ {{$account->current_balance }}</td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

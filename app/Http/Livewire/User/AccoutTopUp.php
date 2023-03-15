@@ -43,7 +43,7 @@ class AccoutTopUp extends Component
     }
     public function render()
     {
-        $account = UserAccount::find($this->selectedaccount);
+        $account = UserAccount::where('id', $this->selectedaccount)->where('user_id', auth()->user()->id)->first();
         return view('livewire.user.accout-top-up', compact('account'));
     }
     public function validateData()
@@ -66,7 +66,6 @@ class AccoutTopUp extends Component
         $this->resetErrorBag();
         if ($this->currentstep ==  3) {
             $this->validate([
-
                 'accept_transaction' => 'required'
             ], [
                 'accept_transaction' => 'Please make sure the checkbox is checked before proceeding'
@@ -83,18 +82,19 @@ class AccoutTopUp extends Component
         $randcheckstring = substr(str_shuffle($checkstring), 0, $checkstringlength);
         $totalstring = str_shuffle($randcheckstring . "" . $randnum . "" . $randstring);
         $account = UserAccount::find($this->account_checked);
+        $account->current_balance = $this->top_up_amount + $account->current_balance;
+        $account->save();
         $trans = new AccountTransaction;
         $trans->account_id = $this->account_checked;
         $trans->user_id = auth()->user()->id;
         $trans->amount = $this->top_up_amount;
-        $trans->new_balance = $this->top_up_amount + $account->new_balance;
+        $trans->new_balance =  $account->current_balance;
         $trans->description = $this->transaction_description;
         $trans->transaction_category = "credit";
         $trans->slug = $totalstring;
         $trans->save();
 
-        $account->current_balance = $this->top_up_amount + $account->new_balance;
-        $account->save();
+
 
         Toastr::success('Account top up credited successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->route('user.myaccounts');

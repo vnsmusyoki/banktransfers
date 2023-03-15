@@ -45,7 +45,7 @@
                                                             <td>
 
                                                                 @if ($trans->transaction_category == 'debit')
-                                                                    <span class="text-warning">- $
+                                                                    <span class="text-warning">- 
                                                                       $  {{ $trans->amount }}</span>
                                                                 @endif
                                                             </td>
