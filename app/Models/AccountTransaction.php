@@ -9,6 +9,10 @@ class AccountTransaction extends Model
 {
     use HasFactory;
 
+    public function accusers()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function acctaccount()
     {
         return $this->belongsTo(UserAccount::class, 'account_id');

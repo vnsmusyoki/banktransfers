@@ -13,11 +13,10 @@
                                         <h5>Hi, {{ Auth::user()->name }}</h5>
                                         <h2>${{ $balance }}.00</h2>
                                         @if (!empty($latestreceived))
-                                        <h5 class="receive">Last Received <span>${{ $latestreceived->amount }}.00</span></h5>
-
+                                            <h5 class="receive">Last Received <span>${{ $latestreceived->amount }}.00</span>
+                                            </h5>
                                         @else
-                                        <h5 class="receive">Last Received <span>$00.00</span></h5>
-
+                                            <h5 class="receive">Last Received <span>$00.00</span></h5>
                                         @endif
                                     </div>
                                     <div class="right-side">
@@ -63,25 +62,32 @@
                                                     @foreach ($latesttransactions as $item)
                                                         <tr>
                                                             <th scope="row">
-                                                                @if(!empty($item->recipient_id))
-                                                                <p>{{ $item->recipientaccount->first_name }} {{ $item->recipientaccount->last_name }}</p>
+                                                                @if (!empty($item->recipient_id))
+                                                                    <p>{{ $item->recipientaccount->first_name }}
+                                                                        {{ $item->recipientaccount->last_name }}</p>
                                                                 @endif
                                                                 <p class="mdr">{{ $item->description }}</p>
                                                             </th>
                                                             <td>
-                                                                <p>{{$item->created_at->format('h:i A')}}</p>
-                                                                <p class="mdr">{{ $item->created_at->format('M d Y') }}</p>
+                                                                <p>{{ $item->created_at->format('h:i A') }}</p>
+                                                                <p class="mdr">{{ $item->created_at->format('M d Y') }}
+                                                                </p>
                                                             </td>
                                                             <td>
-                                                                <p class="inprogress">{{ ucwords($item->status) }}</p>
-                                                            </td>
-                                                            <td>
-                                                                @if($item->transaction_category == "credit")
+                                                                <p class="inprogress">
+                                                                    @if ($item->status == null)
+                                                                        Completed
+                                                                    @else
+                                                                        pending
+                                                                    @endif
 
-                                                                <p> +${{$item->amount }}</p>
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                @if ($item->transaction_category == 'credit')
+                                                                    <p> +${{ $item->amount }}</p>
                                                                 @else
-                                                                <p class="loss"> -${{$item->amount }}</p>
-
+                                                                    <p class="loss"> -${{ $item->amount }}</p>
                                                                 @endif
                                                                 {{-- <p>-${{ $item->amount }}</p> --}}
                                                             </td>
@@ -135,34 +141,33 @@
                                 <div class="section-text d-flex align-items-center justify-content-between">
                                     <h6>Recipients</h6>
                                     <div class="view-all d-flex align-items-center">
-                                        <a href="{{ route('user.alltransactionaccounts')}}">View All</a>
+                                        <a href="{{ route('user.alltransactionaccounts') }}">View All</a>
                                         <img src="{{ asset('assets/images/icon/right-arrow.png') }}" alt="icon">
                                     </div>
                                 </div>
                                 <ul class="recipients-item">
                                     @foreach ($latesttransactions as $item)
-                                    <li>
-                                        <p class="left d-flex align-items-center">
-                                            <img src="{{ asset('assets/images/recipients-1.png') }}" alt="icon">
-                                            <span class="info">
-                                                @if (!empty($item->recipient_id))
-                                                <span>{{ $item->recipientaccount->first_name }} {{ $item->recipientaccount->last_name }}</span>
-
+                                        <li>
+                                            <p class="left d-flex align-items-center">
+                                                <img src="{{ asset('assets/images/recipients-1.png') }}" alt="icon">
+                                                <span class="info">
+                                                    @if (!empty($item->recipient_id))
+                                                        <span>{{ $item->recipientaccount->first_name }}
+                                                            {{ $item->recipientaccount->last_name }}</span>
+                                                    @endif
+                                                    <span>{{ $item->created_at->format('h:i A') }} -
+                                                        {{ $item->created_at->format('d M') }}</span>
+                                                </span>
+                                            </p>
+                                            <p class="right">
+                                                @if ($item->transaction_category == 'credit')
+                                                    <span> +${{ $item->amount }}</span>
+                                                @else
+                                                    <span class="loss"> -${{ $item->amount }}</span>
                                                 @endif
-                                                <span>{{ $item->created_at->format('h:i A') }} - {{ $item->created_at->format('d M') }}</span>
-                                            </span>
-                                        </p>
-                                        <p class="right">
-                                            @if($item->transaction_category == "credit")
-
-                                            <span> +${{$item->amount }}</span>
-                                            @else
-                                            <span class="loss"> -${{$item->amount }}</span>
-
-                                            @endif
-                                            <span>Payment</span>
-                                        </p>
-                                    </li>
+                                                <span>Payment</span>
+                                            </p>
+                                        </li>
                                     @endforeach
 
                                 </ul>

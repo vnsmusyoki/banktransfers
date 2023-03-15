@@ -30,6 +30,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/account-profile', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'role:administrator'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/all-transactions', [AdminDashboardController::class, 'alltransactions'])->name('transactions');
+    Route::get('/all-customers', [AdminDashboardController::class, 'allcustomers'])->name('allcustomers');
+    Route::get('/all-accounts', [AdminDashboardController::class, 'allacccounts'])->name('allacccounts');
 });
 Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');

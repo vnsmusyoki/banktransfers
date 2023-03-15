@@ -105,10 +105,10 @@
                             <i class="fa-solid fa-xmark"></i>
                         </div>
                         <div class="sidebar-logo">
-                            {{-- <a href="dashboard.html"><img src="{{ asset('assets/images/logo.png') }}"
-                                    alt="logo"></a> --}}
-                            <a href="{{ route('admin.dashboard') }}">
-                            </a>
+
+                                    <img src="{{ asset('logo.webp') }}"
+                                            style="width: 185px;margin-top:-30px;" alt="logo">
+                           
                         </div>
                         @role('administrator')
                             @include('layouts.admin-menu')

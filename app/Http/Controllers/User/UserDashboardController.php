@@ -30,7 +30,7 @@ class UserDashboardController extends Controller
         $result[++$key] = [$value->transaction_category, (int)$value->total_amount];
         // $result[++$key] = ["Subject ", (int)$value->subject_name_id];
     }
-        return view('user.dashboard', compact('balance','latestreceived','totaldebits','latesttransactions','result', 'piedata',));
+        return view('user.dashboard', compact('balance','latestreceived','totaldebits','latesttransactions','result', 'piedata'));
     }
     public function paytransaction()
     {
