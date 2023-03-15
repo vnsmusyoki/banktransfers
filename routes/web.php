@@ -27,6 +27,7 @@ Route::get('/account-profile', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/update-password', [App\Http\Controllers\HomeController::class, 'updatepassword'])->name('updatepassword');
 // Route::get('/account-profile', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'role:administrator'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
