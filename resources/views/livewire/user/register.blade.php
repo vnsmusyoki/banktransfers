@@ -113,15 +113,15 @@
         @endif
         <div class="text-center pt-1 mb-5 pb-1">
             @if ($currentstep == 1)
-                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button"    wire:click="increasestep()">Next</button>
+                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button"    wire:click="increasestep()">Next Step</button>
             @endif
             @if ($currentstep == 2)
-                <button class="btn btn-default btn-block fa-lg gradient-custom-2 mb-3" type="button" wire:click="descreaseStep()">Previous </button>
+                <button class="btn btn-default btn-block fa-lg gradient-custom-2 mb-3" type="button" wire:click="descreaseStep()">Previous Step </button>
 
-                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button"    wire:click="increasestep()">Next</button>
+                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button"    wire:click="increasestep()">Next Step</button>
             @endif
             @if ($currentstep == 3)
-                <button class="btn btn-default btn-block fa-lg gradient-custom-2 mb-3" type="button" wire:click="descreaseStep()">Previous </button>
+                <button class="btn btn-default btn-block fa-lg gradient-custom-2 mb-3" type="button" wire:click="descreaseStep()">Previous Step </button>
 
                 <button class="btn btn-success btn-block fa-lg gradient-custom-2 mb-3" type="submit">Sign Up</button>
             @endif

@@ -107,7 +107,7 @@
                     <div class="col-xl-4 col-lg-5">
                         <div class="side-items">
 
-                            <div class="single-item">
+                            {{-- <div class="single-item">
                                 <div class="section-text d-flex align-items-center justify-content-between">
 
                                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -136,7 +136,7 @@
                                         <div id="piechart_3d" style="width: 100%; height: 400px"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="single-item">
                                 <div class="section-text d-flex align-items-center justify-content-between">
                                     <h6>Recipients</h6>

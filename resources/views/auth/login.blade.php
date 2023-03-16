@@ -47,8 +47,8 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="logo.webp"
-                                            style="width: 185px;" alt="logo">
+                                        {{-- <img src="logo.webp"
+                                            style="width: 185px;" alt="logo"> --}}
                                         <h4 class="mt-1 mb-5 pb-1">We are The Bankers Team</h4>
                                     </div>
                                     @if ($message = Session::get('accountsuccess'))
@@ -98,16 +98,9 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                                    <h4 class="mb-4">We are more than just a bankers company</h4>
-                                    {{-- <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                        do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> --}}
-                                </div>
-                            </div>
+                             <div class="col-lg-6">
+                                <img src="image.jpeg" class="img-fluid"  style="width: 100vh;" alt="logo">
+                             </div>
                         </div>
                     </div>
                 </div>

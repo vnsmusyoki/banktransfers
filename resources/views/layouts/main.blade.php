@@ -128,7 +128,7 @@
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-forms').submit();">
                                     <img src="{{ asset('assets/images/icon/quit.png') }}" alt="Quit">
-                                    <span>Quit</span>
+                                    <span>Log Out</span>
                                 </a>
                             </li>
 
