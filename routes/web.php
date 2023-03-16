@@ -32,14 +32,21 @@ Route::post('/update-password', [App\Http\Controllers\HomeController::class, 'up
 Route::middleware(['auth', 'role:administrator'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/all-blogs', [AdminDashboardController::class, 'allblogs'])->name('blogs');
+    Route::get('/all-posts', [AdminDashboardController::class, 'allposts'])->name('posts');
     Route::get('/all-transactions', [AdminDashboardController::class, 'alltransactions'])->name('transactions');
     Route::get('/all-customers', [AdminDashboardController::class, 'allcustomers'])->name('allcustomers');
     Route::get('/all-accounts', [AdminDashboardController::class, 'allacccounts'])->name('allacccounts');
+    Route::get('/create-blog', [AdminDashboardController::class, 'createblog'])->name('createblog');
+    Route::post('/store-blog', [AdminDashboardController::class, 'storeblog'])->name('storeblog');
+    Route::get('/edit-blog/{slug}', [AdminDashboardController::class, 'editblog'])->name('editblog');
+    Route::get('/delete-blog/{slug}', [AdminDashboardController::class, 'deleteblog'])->name('deleteblog');
+    Route::patch('/update-blog/{slug}', [AdminDashboardController::class, 'updateblog'])->name('updateblog');
 });
 Route::middleware(['auth', 'role:user'])->name('user.')->prefix('user')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/pay-transaction', [UserDashboardController::class, 'paytransaction'])->name('paytransaction');
     Route::get('/my-accounts', [UserDashboardController::class, 'myaccounts'])->name('myaccounts');
+    Route::get('/posts', [UserDashboardController::class, 'allposts'])->name('posts');
     Route::get('/add-account', [UserDashboardController::class, 'addaccount'])->name('addaccount');
     Route::post('/store-account', [UserDashboardController::class, 'storeaccount'])->name('storeaccount');
     Route::get('/edit-account/{slug}', [UserDashboardController::class, 'editaccount'])->name('editaccount');

@@ -5,10 +5,22 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="active">
+    <li class="">
+        <a href="{{ route('admin.createblog')}}">
+            <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Blogs">
+            <span>Create Blog/Post</span>
+        </a>
+    </li>
+    <li class="">
         <a href="{{ route('admin.blogs')}}">
             <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Blogs">
             <span>Blogs</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('admin.posts')}}">
+            <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Blogs">
+            <span>Posts</span>
         </a>
     </li>
     <li>

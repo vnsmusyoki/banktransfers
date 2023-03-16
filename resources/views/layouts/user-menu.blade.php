@@ -25,6 +25,12 @@
         </a>
     </li>
     <li>
+        <a href="{{ route('user.posts')}}">
+            <img src="{{ asset('assets/images/icon/receive.png') }}" alt="Receive">
+            <span>Posts</span>
+        </a>
+    </li>
+    <li>
         <a href="{{ route('user.pendingtransactions')}}">
             <img src="{{ asset('assets/images/icon/exchange.png') }}" alt="Exchange">
             <span>Pending Transactions</span>
@@ -36,5 +42,5 @@
             <span>Recipients</span>
         </a>
     </li>
-  
+
 </ul>

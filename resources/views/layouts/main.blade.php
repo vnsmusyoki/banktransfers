@@ -26,7 +26,7 @@
 
 <body>
     <!-- start preloader -->
-    <div class="preloader" id="preloader"></div>
+    {{-- <div class="preloader" id="preloader"></div> --}}
     <!-- end preloader -->
 
     <!-- Scroll To Top Start-->
@@ -157,7 +157,7 @@
     @yield('content')
     {{-- </section> --}}
     <!-- Dashboard Section end -->
- 
+
     <!--==================================================================-->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

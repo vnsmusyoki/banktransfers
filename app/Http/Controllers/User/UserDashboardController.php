@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\AccountTransaction;
 use App\Models\AccountType;
+use App\Models\Blog;
 use App\Models\RecipientTransaction;
 use App\Models\UserAccount;
 use App\Models\UserRecipient;
@@ -139,7 +140,11 @@ class UserDashboardController extends Controller
             return redirect()->route('user.myrecipients');
         }
     }
-
+    public function allposts()
+    {
+        $blogs = Blog::all();
+        return view('user.all-posts', compact('blogs'));
+    }
     public function alltransactionaccounts()
     {
         $transactions = AccountTransaction::where('user_id', auth()->user()->id)->whereNull('status')->orderBy('created_at', 'asc')->get();
