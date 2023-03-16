@@ -5,6 +5,12 @@
             <span>Dashboard</span>
         </a>
     </li>
+    <li class="active">
+        <a href="{{ route('admin.blogs')}}">
+            <img src="{{ asset('assets/images/icon/dashboard.png') }}" alt="Blogs">
+            <span>Blogs</span>
+        </a>
+    </li>
     <li>
         <a href="{{ route('admin.transactions')}}">
             <img src="{{ asset('assets/images/icon/transactions.png') }}" alt="Transactions">
@@ -23,5 +29,5 @@
             <span>All Accounts</span>
         </a>
     </li>
-    
+
 </ul>

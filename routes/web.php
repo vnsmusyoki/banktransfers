@@ -31,6 +31,7 @@ Route::post('/update-password', [App\Http\Controllers\HomeController::class, 'up
 // Route::get('/account-profile', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'role:administrator'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/all-blogs', [AdminDashboardController::class, 'allblogs'])->name('blogs');
     Route::get('/all-transactions', [AdminDashboardController::class, 'alltransactions'])->name('transactions');
     Route::get('/all-customers', [AdminDashboardController::class, 'allcustomers'])->name('allcustomers');
     Route::get('/all-accounts', [AdminDashboardController::class, 'allacccounts'])->name('allacccounts');

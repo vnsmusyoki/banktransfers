@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AccountTransaction;
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,5 +38,9 @@ class AdminDashboardController extends Controller
     public function allacccounts(){
         $customers = User::whereRoleIs('user')->get();
         return view('admin.all-accounts',compact('customers'));
+    }
+    public function allblogs(){
+        $blogs = Blog::where('category', 'blog')->get();
+        return view('admin.all-blogs', compact('blogs'));
     }
 }
